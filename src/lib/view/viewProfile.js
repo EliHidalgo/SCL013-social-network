@@ -11,17 +11,21 @@ export const viewProfile = () => {
        db.collection('users').doc(user.uid).onSnapshot((doc) => {
           divProfile.innerHTML = `
     <header id="headerProfile" class="headerFCP">
+        <div id="logoImgProfile">
         <img src="http://imgfz.com/i/TKBv2dp.png" width="50px">
+        </div>
+        <div id="logOutProfile">
         <button href="#/home" id="logOut">Cerrar sesión</button>
+        </div>
     </header> 
-    <div id="containerProfileBody">
+    <div class= "containerProfileBody" id="containerProfileBody">
         <div class="imageProfile">
             <img src='${user.photoURL ? user.photoURL : "https://i.ibb.co/4J9JFF0/perfil.png" }' width='180px'>
         </div>
         <div class="infoProfile" id="infoProfile">
             <h3 id = 'displayName${user.uid}'>${user.displayName}</h3>
             <input class = 'userNameClass' type="text" id="userNameInput${user.uid}" autocomplete= "off" placeholder="Nombre de usuario" style = 'display:none'>
-            <h4>${user.email}</h4>
+            <h5>${user.email}</h5>
                 <div class="description">
                     <div class = 'containerDescription'>
                       <h4>Descripción</h4>
@@ -99,25 +103,11 @@ export const viewProfile = () => {
     btnEditProfile.addEventListener('click', (doc) => {
       editProfile(getCurrentUser(doc));
     });
+  })
 
-
-
-
-
-
-
-        })
-
-
-
-      
-      
       //const userInfo = db.collection('users').doc(user.uid)
     } else {
         window.location.hash = '#/home';
     }
     return divProfile;
 };
-
-
-//Profesora de yoga y medicina alternativa en Narayan Estudio Chile
